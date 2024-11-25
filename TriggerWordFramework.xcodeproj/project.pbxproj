@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A30FE2CA2DFA935400A9DDA0 /* Package.swift in Resources */ = {isa = PBXBuildFile; fileRef = A30FE2C92DFA935400A9DDA0 /* Package.swift */; };
+		A30FE3122DFA9A2F00A9DDA0 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A30FE3112DFA9A2400A9DDA0 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A30FE26D2DFA24CD00A9DDA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -19,6 +24,8 @@
 /* Begin PBXFileReference section */
 		A30FE2602DFA24CD00A9DDA0 /* TriggerWordFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TriggerWordFramework.framework; path = /Volumes/McGARAGE/dev/TriggerWordFramework/build/Debug/TriggerWordFramework.framework; sourceTree = "<absolute>"; };
 		A30FE26B2DFA24CD00A9DDA0 /* TriggerWordFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = TriggerWordFrameworkTests.xctest; path = /Volumes/McGARAGE/dev/TriggerWordFramework/build/Debug/TriggerWordFrameworkTests.xctest; sourceTree = "<absolute>"; };
+		A30FE2C92DFA935400A9DDA0 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		A30FE3112DFA9A2400A9DDA0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -26,7 +33,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				BUILD.md,
-				Package.swift,
 			);
 			target = A30FE25F2DFA24CD00A9DDA0 /* TriggerWordFramework */;
 		};
@@ -40,13 +46,6 @@
 				BUILD.md,
 			);
 		};
-		A30FE2CB2DFA935B00A9DDA0 /* Exceptions for "TriggerWordFramework" folder in "Copy Bundle Resources" phase from "TriggerWordFramework" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = A30FE25E2DFA24CD00A9DDA0 /* Resources */;
-			membershipExceptions = (
-				Package.swift,
-			);
-		};
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -55,7 +54,6 @@
 			exceptions = (
 				A30FE2C32DFA8C3700A9DDA0 /* Exceptions for "TriggerWordFramework" folder in "TriggerWordFramework" target */,
 				A30FE2C42DFA8C3700A9DDA0 /* Exceptions for "TriggerWordFramework" folder in "Compile Sources" phase from "TriggerWordFramework" target */,
-				A30FE2CB2DFA935B00A9DDA0 /* Exceptions for "TriggerWordFramework" folder in "Copy Bundle Resources" phase from "TriggerWordFramework" target */,
 			);
 			path = TriggerWordFramework;
 			sourceTree = "<group>";
@@ -88,8 +86,10 @@
 		A30FE2562DFA24CD00A9DDA0 = {
 			isa = PBXGroup;
 			children = (
+				A30FE3112DFA9A2400A9DDA0 /* README.md */,
 				A30FE26F2DFA24CD00A9DDA0 /* TriggerWordFrameworkTests */,
 				A30FE2622DFA24CD00A9DDA0 /* TriggerWordFramework */,
+				A30FE2C92DFA935400A9DDA0 /* Package.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,6 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30FE2CA2DFA935400A9DDA0 /* Package.swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30FE3122DFA9A2F00A9DDA0 /* README.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
