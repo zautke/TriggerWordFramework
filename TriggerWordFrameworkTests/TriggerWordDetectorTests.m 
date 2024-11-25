@@ -1,0 +1,74 @@
+#import <XCTest/XCTest.h>
+#import "TriggerWordDetector.h"
+
+@interface MockTriggerWordDetector : TriggerWordDetector
+@property (nonatomic, copy) void (^triggerDetectedHandler)(void);
+- (void)simulateAmplitudes:(NSArray<NSNumber *> *)amplitudes frameDuration:(float)duration;
+@end
+
+@implementation MockTriggerWordDetector
+
+- (void)simulateAmplitudes:(NSArray<NSNumber *> *)amplitudes frameDuration:(float)duration {
+    enum { SILENT, PEAK1, DIP, PEAK2 } state = SILENT;
+    float peak1Time = 0, dipTime = 0, time = 0;
+    const float thresholdHigh = 0.15f;
+    const float thresholdLow  = 0.05f;
+
+    for (NSNumber *val in amplitudes) {
+        float amp = [val floatValue];
+
+        switch (state) {
+            case SILENT:
+                if (amp > thresholdHigh) {
+                    peak1Time = time;
+                    state = PEAK1;
+                }
+                break;
+            case PEAK1:
+                if (amp < thresholdLow) {
+                    dipTime = time;
+                    state = DIP;
+                }
+                break;
+            case DIP:
+                if (amp > thresholdHigh) {
+                    float spacing = time - peak1Time;
+                    if (spacing >= 0.2f && spacing <= 1.0f) {
+                        if (self.triggerDetectedHandler) self.triggerDetectedHandler();
+                        return;
+                    } else {
+                        state = SILENT;
+                    }
+                }
+                break;
+            default: state = SILENT; break;
+        }
+
+        time += duration;
+    }
+}
+
+@end
+
+@interface TriggerWordDetectorTests : XCTestCase
+@end
+
+@implementation TriggerWordDetectorTests
+
+- (void)testBrazenAmplitudeSequence {
+    MockTriggerWordDetector *detector = [MockTriggerWordDetector new];
+    XCTestExpectation *expect = [self expectationWithDescription:@"Trigger detected"];
+
+    detector.triggerDetectedHandler = ^{
+        [expect fulfill];
+    };
+
+    // Simulated amplitude sequence for “brazen”: silence, peak1, dip, peak2
+    [detector simulateAmplitudes:@[
+        @0.01, @0.02, @0.16, @0.18, @0.10, @0.03, @0.02, @0.20, @0.22, @0.18
+    ] frameDuration:0.01];
+
+    [self waitForExpectationsWithTimeout:1.0 handler:nil];
+}
+
+@end

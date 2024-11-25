@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A30FE2CA2DFA935400A9DDA0 /* Package.swift in Resources */ = {isa = PBXBuildFile; fileRef = A30FE2C92DFA935400A9DDA0 /* Package.swift */; };
-		A30FE3122DFA9A2F00A9DDA0 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A30FE3112DFA9A2400A9DDA0 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,39 +21,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A30FE2602DFA24CD00A9DDA0 /* TriggerWordFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TriggerWordFramework.framework; path = /Volumes/McGARAGE/dev/TriggerWordFramework/build/Debug/TriggerWordFramework.framework; sourceTree = "<absolute>"; };
-		A30FE26B2DFA24CD00A9DDA0 /* TriggerWordFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = TriggerWordFrameworkTests.xctest; path = /Volumes/McGARAGE/dev/TriggerWordFramework/build/Debug/TriggerWordFrameworkTests.xctest; sourceTree = "<absolute>"; };
 		A30FE2C92DFA935400A9DDA0 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		A30FE3112DFA9A2400A9DDA0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = README.md; sourceTree = "<group>"; };
+		A3D6354E2DFAA5EB00D7DE0C /* TriggerWordFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TriggerWordFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3D6354F2DFAA5EB00D7DE0C /* TriggerWordFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriggerWordFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3D6355A2DFAA6D400D7DE0C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A30FE2C32DFA8C3700A9DDA0 /* Exceptions for "TriggerWordFramework" folder in "TriggerWordFramework" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				BUILD.md,
-			);
-			target = A30FE25F2DFA24CD00A9DDA0 /* TriggerWordFramework */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		A30FE2C42DFA8C3700A9DDA0 /* Exceptions for "TriggerWordFramework" folder in "Compile Sources" phase from "TriggerWordFramework" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = A30FE25C2DFA24CD00A9DDA0 /* Sources */;
-			membershipExceptions = (
-				BUILD.md,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A30FE2622DFA24CD00A9DDA0 /* TriggerWordFramework */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				A30FE2C32DFA8C3700A9DDA0 /* Exceptions for "TriggerWordFramework" folder in "TriggerWordFramework" target */,
-				A30FE2C42DFA8C3700A9DDA0 /* Exceptions for "TriggerWordFramework" folder in "Compile Sources" phase from "TriggerWordFramework" target */,
-			);
 			path = TriggerWordFramework;
 			sourceTree = "<group>";
 		};
@@ -86,10 +61,12 @@
 		A30FE2562DFA24CD00A9DDA0 = {
 			isa = PBXGroup;
 			children = (
-				A30FE3112DFA9A2400A9DDA0 /* README.md */,
+				A3D6355A2DFAA6D400D7DE0C /* README.md */,
 				A30FE26F2DFA24CD00A9DDA0 /* TriggerWordFrameworkTests */,
 				A30FE2622DFA24CD00A9DDA0 /* TriggerWordFramework */,
 				A30FE2C92DFA935400A9DDA0 /* Package.swift */,
+				A3D6354E2DFAA5EB00D7DE0C /* TriggerWordFramework.framework */,
+				A3D6354F2DFAA5EB00D7DE0C /* TriggerWordFrameworkTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,7 +103,7 @@
 			packageProductDependencies = (
 			);
 			productName = TriggerWordFramework;
-			productReference = A30FE2602DFA24CD00A9DDA0 /* TriggerWordFramework.framework */;
+			productReference = A3D6354E2DFAA5EB00D7DE0C /* TriggerWordFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A30FE26A2DFA24CD00A9DDA0 /* TriggerWordFrameworkTests */ = {
@@ -149,7 +126,7 @@
 			packageProductDependencies = (
 			);
 			productName = TriggerWordFrameworkTests;
-			productReference = A30FE26B2DFA24CD00A9DDA0 /* TriggerWordFrameworkTests.xctest */;
+			productReference = A3D6354F2DFAA5EB00D7DE0C /* TriggerWordFrameworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -168,6 +145,7 @@
 					};
 					A30FE26A2DFA24CD00A9DDA0 = {
 						CreatedOnToolsVersion = 26.0;
+						LastSwiftMigration = 2600;
 					};
 				};
 			};
@@ -214,7 +192,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A30FE3122DFA9A2F00A9DDA0 /* README.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 52AA89AC9T;
@@ -474,6 +452,7 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
@@ -485,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 52AA89AC9T;
