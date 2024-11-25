@@ -1,0 +1,23 @@
+---
+
+## 📄 .gitignore
+
+Add a `.gitignore` to avoid checking in derived or build artifacts:
+
+```gitignore
+# Swift Package Manager
+.build/
+.packages/
+
+# Xcode
+*.xcworkspace
+DerivedData/
+xcuserdata/
+*.xcuserstate
+
+# Frameworks
+**/*.xcframework.zip
+**/TriggerWordFramework.xcframework/.tm
+.DS_Store
+build/
+.tm
