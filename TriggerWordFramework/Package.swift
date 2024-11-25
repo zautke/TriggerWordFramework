@@ -23,7 +23,7 @@ let package = Package(
     targets: [
         .target(
             name: "TriggerWordFramework",
-            path: "Sources/TriggerWordFramework",
+            path: "TriggerWordFramework/Sources/TriggerWordFramework",
             publicHeadersPath: "."
         )
     ]

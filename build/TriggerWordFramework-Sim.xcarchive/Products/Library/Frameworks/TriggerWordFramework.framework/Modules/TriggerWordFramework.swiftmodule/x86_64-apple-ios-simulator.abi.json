@@ -1,0 +1,21 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TriggerWordFramework",
+    "printedName": "TriggerWordFramework",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TriggerWordFramework",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}
