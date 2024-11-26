@@ -296,15 +296,21 @@ static OSStatus RenderCallback(void *inRefCon,
         return status;
     }
     
-    // Process amplitude-based trigger detection with optimized state machine
+    // Process amplitude-based trigger detection optimized for "brazen" (BRAY-zen)
     static enum { SILENT, PEAK1, DIP, PEAK2 } state = SILENT;
     static CFAbsoluteTime peak1Time = 0, dipTime = 0;
-    static const Float32 thresholdHigh = 0.15f;
-    static const Float32 thresholdLow = 0.05f;
+    
+    // Optimized thresholds for "brazen" detection
+    static const Float32 thresholdHigh = 0.12f;     // BRAY peak threshold
+    static const Float32 thresholdLow = 0.04f;      // Dip threshold between syllables
+    static const Float32 thresholdPeak2 = 0.08f;    // "zen" peak (softer than "BRAY")
     static const Float32 sampleRate = 16000.0f;
-    static const Float32 minPeakSpacing = 0.2f;  // Minimum time between peaks
-    static const Float32 maxPeakSpacing = 1.0f;  // Maximum time between peaks
-    static const Float32 stateTimeout = 2.0f;    // Timeout for any state
+    
+    // Timing optimized for "brazen" pronunciation (~0.5-0.7 seconds total)
+    static const Float32 minPeakSpacing = 0.15f;    // Minimum time between BRAY and zen
+    static const Float32 maxPeakSpacing = 0.6f;     // Maximum time between BRAY and zen
+    static const Float32 dipMinDuration = 0.05f;    // Minimum dip duration
+    static const Float32 stateTimeout = 1.5f;       // Timeout for any state
     
     // Convert to float and find max amplitude efficiently
     SInt16 *samples = (SInt16 *)bufferList.mBuffers[0].mData;
@@ -326,7 +332,7 @@ static OSStatus RenderCallback(void *inRefCon,
             if (maxAmplitude > thresholdHigh) {
                 peak1Time = currentTime;
                 state = PEAK1;
-                NSLog(@"[Trigger] PEAK 1 detected at %.2f (amp: %.3f)", currentTime, maxAmplitude);
+                NSLog(@"[Brazen] BRAY detected at %.2f (amp: %.3f)", currentTime, maxAmplitude);
             }
             break;
             
@@ -334,39 +340,49 @@ static OSStatus RenderCallback(void *inRefCon,
             if (maxAmplitude < thresholdLow) {
                 dipTime = currentTime;
                 state = DIP;
-                NSLog(@"[Trigger] DIP after PEAK 1 at %.2f", currentTime);
+                NSLog(@"[Brazen] Dip after BRAY at %.2f", currentTime);
             } else if (currentTime - peak1Time > stateTimeout) {
                 // Timeout, reset
                 state = SILENT;
-                NSLog(@"[Trigger] PEAK1 timeout, resetting");
+                NSLog(@"[Brazen] BRAY timeout, resetting");
             }
             break;
             
         case DIP:
-            if (maxAmplitude > thresholdHigh) {
+            // Check for "zen" syllable with lower threshold
+            if (maxAmplitude > thresholdPeak2) {
                 Float32 peakSpacing = currentTime - peak1Time;
-                if (peakSpacing >= minPeakSpacing && peakSpacing <= maxPeakSpacing) {
-                    NSLog(@"[Trigger] TRIGGER WORD DETECTED! Interval: %.2fs (amp: %.3f)", peakSpacing, maxAmplitude);
+                Float32 dipDuration = currentTime - dipTime;
+                
+                // Validate timing for "brazen" pronunciation
+                if (peakSpacing >= minPeakSpacing && peakSpacing <= maxPeakSpacing &&
+                    dipDuration >= dipMinDuration) {
+                    NSLog(@"[Brazen] 'BRAZEN' DETECTED! Total duration: %.2fs, zen amplitude: %.3f",
+                          peakSpacing, maxAmplitude);
                     
                     // Post notification on main queue for thread safety
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [[NSNotificationCenter defaultCenter]
                          postNotificationName:@"TriggerWordDetected"
                                        object:nil
-                                     userInfo:@{@"amplitude": @(maxAmplitude),
-                                               @"interval": @(peakSpacing)}];
+                                     userInfo:@{@"word": @"brazen",
+                                               @"brazAmplitude": @(maxAmplitude),
+                                               @"zenAmplitude": @(maxAmplitude),
+                                               @"duration": @(peakSpacing),
+                                               @"confidence": @(MIN(1.0, (maxAmplitude / thresholdPeak2)))}];
                     });
                     
                     state = SILENT;
                     peak1Time = dipTime = 0;
                 } else {
-                    NSLog(@"[Trigger] PEAK 2 timing invalid (%.2fs), resetting", peakSpacing);
+                    NSLog(@"[Brazen] zen timing invalid - duration: %.2fs, dip: %.2fs, resetting",
+                          peakSpacing, dipDuration);
                     state = SILENT;
                 }
             } else if (currentTime - dipTime > stateTimeout) {
-                // Timeout waiting for peak 2
+                // Timeout waiting for "zen"
                 state = SILENT;
-                NSLog(@"[Trigger] DIP timeout, resetting");
+                NSLog(@"[Brazen] Timeout waiting for 'zen', resetting");
             }
             break;
             
